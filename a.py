@@ -33,16 +33,20 @@ client = utils(ticker1,ticker2)
 df = pd.concat([pd.DataFrame(client.ticker1_close),pd.DataFrame(client.ticker2_close)], axis = 1)
 df.columns = [ticker1, ticker2]
 
+
+
+
 # calculate spread
 
-model = OLS(df[ticker1].iloc[:len(df[ticker1])],df[ticker2].iloc[:len(df[ticker1])])
+model = OLS(df[ticker1].iloc[:250],df[ticker2].iloc[:250]) #len(df[ticker2])
 model.fit()
 df[spread]  = df[ticker1] - model.normalized_cov_params[0] * df[ticker2]
-df[spread].plot()
-plt.ylabel("SPREAD")
-plt.show()
+df[spread].iloc[:250].plot()
+#plt.ylabel("SPREAD")
+#plt.show()
 df[moving_average] = df[spread].rolling(30).mean()
 df[moving_average_std_dev] = df[spread].rolling(30).std()
+df[moving_average].iloc[:250].plot()
 
 
 #UPPER BAND AND LOWER BAND
@@ -50,6 +54,9 @@ df[moving_average_std_dev] = df[spread].rolling(30).std()
 
 df[up_band] = df[moving_average] + 2*df[moving_average_std_dev]
 df[low_band] = df[moving_average] - 2*df[moving_average_std_dev]
+df[up_band].iloc[:250].plot()
+df[low_band].iloc[:250].plot()
+plt.show()
 
 
 #LONG POS
