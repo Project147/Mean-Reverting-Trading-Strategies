@@ -8,8 +8,8 @@ from statsmodels.api import OLS
 ###################### SOME CONSTANT ##########################
 ###############################################################
 
-ticker1 = "NOKUSD=X"
-ticker2 = "EURUSD=X"
+ticker1 = "EURGBP=X"
+ticker2 = "GBPUSD=X"
 spread = 'SPREAD'
 moving_average = "MOVING AVERAGE"
 moving_average_std_dev = "MOVING AVERAGE STD"
