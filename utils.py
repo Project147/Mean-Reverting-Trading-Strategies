@@ -13,13 +13,13 @@ class utils:
 
     def read_data(self):
         pair1 = yf.Ticker(self.ticker1)
-        hist1 = pair1.history(period="1y")
+        hist1 = pair1.history(period="2mo")
         for x in hist1["Close"]:
             self.ticker1_close.append(x)
         
 
         pair2 = yf.Ticker(self.ticker2)
-        hist2 = pair2.history(period="1y")
+        hist2 = pair2.history(period="2mo")
         for x in hist2["Close"]:
             self.ticker2_close.append(x)       
         
